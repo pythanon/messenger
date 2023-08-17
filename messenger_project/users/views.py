@@ -9,6 +9,7 @@ from .serializers import UserProfileSerializer, UserRegistrationSerializer
 class UserProfileView(generics.RetrieveUpdateAPIView):
     serializer_class = UserProfileSerializer
     permission_classes = [IsAuthenticated]
+    queryset = UserProfile.objects.none()
 
     def get_object(self):
         return self.request.user

@@ -10,6 +10,8 @@ router = DefaultRouter()
 router.register(r'chats', ChatViewSet)
 router.register(r'messages', MessageViewSet)
 
+
+
 urlpatterns = [
     path("admin/", admin.site.urls),
     path('api/profile/', UserProfileView.as_view(), name='user-profile'),
@@ -18,6 +20,8 @@ urlpatterns = [
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     path('api/auth/', include('djoser.urls')),
     path('api/auth/', include('djoser.urls.jwt')),
+    path('profile/', UserProfileView.as_view(), name='userprofile'),
+
 
 
 

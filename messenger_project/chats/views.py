@@ -7,6 +7,7 @@ from .serializers import ChatSerializer, MessageSerializer
 class ChatViewSet(viewsets.ModelViewSet):
     serializer_class = ChatSerializer
     permission_classes = [IsAuthenticated]
+    queryset = Chat.objects.none()
 
     def get_queryset(self):
         return Chat.objects.filter(participants=self.request.user)
