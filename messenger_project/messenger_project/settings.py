@@ -1,3 +1,4 @@
+import datetime
 from pathlib import Path
 
 from decouple import config
@@ -26,6 +27,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "rest_framework",
+    "djoser",
     "users",
     "chats",
 
@@ -113,3 +115,19 @@ STATIC_URL = "static/"
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ),
+}
+
+SIMPLE_JWT = {
+    'ALGORITHM': 'HS256',
+    'SIGNING_KEY': SECRET_KEY,
+    'VERIFYING_KEY': None,
+    'ACCESS_TOKEN_LIFETIME': datetime.timedelta(minutes=60),
+    'ROTATE_REFRESH_TOKENS': False,
+    'VALIDATE_TOKEN_CLAIMS': True,
+    'INVALID_TOKEN_ERROR_CLASS': 'rest_framework_simplejwt.exceptions.InvalidTokenError',
+}
